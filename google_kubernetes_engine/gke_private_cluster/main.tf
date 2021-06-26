@@ -28,7 +28,7 @@ module "gke_private_cluster" {
   master_ipv4_cidr_block     = var.master_ipv4_cidr_block
   kubernetes_version         = var.kubernetes_version
   master_authorized_networks = var.master_authorized_networks
-  service_account    		 = var.service_account
+  service_account            = var.service_account
   cluster_resource_labels    = var.gce_labels
   node_pools = [
     {
@@ -42,7 +42,6 @@ module "gke_private_cluster" {
       image_type         = var.image_type
       auto_repair        = var.auto_repair
       auto_upgrade       = var.auto_upgrade
-	  service_account    = var.service_account
       preemptible        = false
       initial_node_count = 1
     },
