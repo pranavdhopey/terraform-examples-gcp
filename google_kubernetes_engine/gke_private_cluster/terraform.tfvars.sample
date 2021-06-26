@@ -1,0 +1,55 @@
+/* GLOBAL */
+project_id = "<my-first-project>"                   
+region     = "<my-region>"
+zones      = ["<my>","<selected>","<zones>"]
+
+
+/* Network */
+network           = "<my-network-name>"
+subnetwork        = "<my-sub-network-name>"
+ip_range_pods     = "<my-pod-range>"
+ip_range_services = "<my-service-range>"
+
+
+/* Cluster Configuration */
+
+cluster_name           = "my-first-gke-cluster"
+master_ipv4_cidr_block = "172.16.0.0/28"
+kubernetes_version     = "1.19.9-gke.1900"
+gce_labels             = { "env" = "testing" }
+master_authorized_networks = [
+  {
+    cidr_block   = "192.168.0.0/16"
+    display_name = "VPC"
+  }
+]
+
+
+/* Node Pool 1 Configuration */
+
+node_pool_01    = "gkenodepool-01"
+machine_type    = "g1-small"
+min_count       = 1
+max_count       = 3
+disk_size_gb    = 30
+disk_type       = "pd-standard"
+image_type      = "COS"
+auto_repair     = true
+auto_upgrade    = true
+service_account = "<name>@<project_id>.iam.gserviceaccount.com"
+
+/* Node Pool 2 Configuration */
+node_pool_02 = "gkenodepool-02"
+
+
+node_pools_labels = {
+  all = {}
+
+  gkenodepool-01 = {
+    name = "node_pool1"
+  }
+
+  gkenodepool-02 = {
+    name = "node_pool2"
+  }
+}
