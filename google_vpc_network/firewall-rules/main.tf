@@ -20,25 +20,7 @@ module "allow_ssh_rdp" {
   source       = "../modules/firewall-rules"
   network_name = var.network_name
   project_id   = var.project_id
-  rules = [{
-    name                    = "allow-ssh-rdp-frw"
-    description             = "Allow SSH and RDP Access"
-    direction               = "INGRESS"
-    ranges                  = ["35.235.240.0/20"]
-    priority                = 1000
-    source_tags             = null
-    source_service_accounts = null
-    target_tags             = ["ssh", "rdp"]
-    target_service_accounts = null
-    allow = [{
-      protocol = "tcp"
-      ports    = ["22", "3389"]
-    }]
-    deny = []
-    log_config = {
-      metadata = "INCLUDE_ALL_METADATA"
-    }
-  }]
+  rules        = var.allow_ssh_rdp["rules"]
 }
 
 /* Firewall Rule for Web Access */
@@ -46,23 +28,5 @@ module "allow_web" {
   source       = "../modules/firewall-rules"
   network_name = var.network_name
   project_id   = var.project_id
-  rules = [{
-    name                    = "allow-web-frw"
-    description             = "Allow HTTP and HTTPS Access"
-    direction               = "INGRESS"
-    ranges                  = ["0.0.0.0/0"]
-    priority                = 1000
-    source_tags             = null
-    source_service_accounts = null
-    target_tags             = ["web"]
-    target_service_accounts = null
-    allow = [{
-      protocol = "tcp"
-      ports    = ["80", "443"]
-    }]
-    deny = []
-    log_config = {
-      metadata = "INCLUDE_ALL_METADATA"
-    }
-  }]
+  rules        = var.allow_web["rules"]
 }

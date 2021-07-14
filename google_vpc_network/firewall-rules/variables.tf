@@ -27,3 +27,10 @@ variable "region" {
   description = "GCP region where the resource will be created"
 }
 
+variable "allow_ssh_rdp" {
+  description = "Firewall rule to allow SSH and RDP from IAP"
+}
+
+variable "allow_web" {
+  description = "Firewall rule to allow HTTP and HTTPS"
+}
