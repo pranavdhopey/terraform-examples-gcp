@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-module "my_bucket" {
-  source          = "../modules/gcs_bucket"
-  name            = var.my_bucket["name"]
-  project_id      = var.project_id
-  location        = var.my_bucket["location"]
-  versioning      = var.my_bucket["versioning"]
-  labels          = var.my_bucket["labels"]
-  force_destroy   = false
-  iam_members     = var.my_bucket["iam_members"]
-  lifecycle_rules = var.my_bucket["lifecycle_rules"]
-}
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
 
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 3.53"
+    }
+  }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-cloud-storage/v2.0.0"
+  }
+
+}

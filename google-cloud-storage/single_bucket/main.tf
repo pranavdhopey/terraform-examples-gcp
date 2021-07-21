@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = string
+module "my_bucket" {
+  source             = "../modules/simple_bucket"
+  name               = var.my_bucket["name"]
+  project_id         = var.project_id
+  location           = var.my_bucket["location"]
+  versioning         = var.my_bucket["versioning"]
+  labels             = var.my_bucket["labels"]
+  force_destroy      = var.my_bucket["force_destroy"]
+  iam_members        = var.my_bucket["iam_members"]
+  lifecycle_rules    = var.my_bucket["lifecycle_rules"]
+  bucket_policy_only = var.my_bucket["bucket_policy_only"]
 }
 
-variable "region" {
-  description = "GCP region where the bucket will be created"
-  type        = string
-}
-
-
-variable "my_bucket" {
-  description = "my bucket details"
-}
